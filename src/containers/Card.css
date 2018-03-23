@@ -1,0 +1,91 @@
+.root{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height: 400px;
+  position:relative;
+}
+.cardTitle{
+  background-color:#999;
+  height: 50px;
+  text-align: center;
+  padding-top: 8px;
+}
+.cardImg{
+  
+  max-height: 150px;
+}
+.cardTitleText{
+padding:10px;
+color:#4b90cd;
+font-size: 15px;
+font-weight: bold;
+line-height: 1; 
+
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+}
+.cardText{
+  color: rgb(58, 57, 57);
+  font-size: 12px;
+  line-height: 1; 
+  border: 0px;
+  }
+.cardTextDetalle{
+  background-color: #ffffff;
+  color: rgb(58, 57, 57);
+  font-size: 12px;
+  line-height: 1; 
+  }  
+.cardTextTitulos{
+  background-color: #4b90cd;
+  color: #f3f3f3; 
+  font-size: 12px;
+  line-height: 1; 
+}    
+.cardTitlePrice{
+color: rgb(226, 0, 0);
+font-size: 16px;
+line-height: 1; 
+}
+.reactimg{
+max-height: 250px;
+}
+.smallCenter{
+  text-align: center;
+}
+.hr{
+  margin: 0.2em 0;
+}
+.cardFooter{
+  position:absolute; 
+  width: 100%;
+  bottom:0px;
+  margin-left: -21px;
+  margin-right: -12px;
+}
+.cardBody{
+  padding: '12px';
+  height: '200px';
+}
+.thumbImg{
+  height: 50px;
+  cursor: pointer;
+}
+.modalStyle{
+  width: 750px;
+  margin: auto;
+}
+.listaDetalle{
+font-size: 10px;
+}
+.btnDetalle{
+  font-size: 10px;
+}
