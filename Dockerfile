@@ -19,4 +19,5 @@ RUN yarn install
 RUN yarn run build -- --release --docker
 # Bundle app source
 #, "--name 'webapp'", "-i max
-CMD ["pm2", "start", "build/server.js", "--no-daemon"]
+#CMD ["pm2", "start", "build/server.js", "--no-daemon"]
+RUN yarn start
