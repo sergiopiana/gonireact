@@ -12,12 +12,12 @@ WORKDIR /usr/src/app
 # where available (npm@5+)
 COPY  ./ .
 
-RUN yarn install
+#RUN yarn install
 
 # If you are building your code for production
-# RUN npm install --only=production
-RUN yarn run build -- --release --docker
+RUN npm install --only=production
+RUN npm run build -- --release --docker
 # Bundle app source
 #, "--name 'webapp'", "-i max
 #CMD ["pm2", "start", "build/server.js", "--no-daemon"]
-RUN yarn start
+RUN npm start
