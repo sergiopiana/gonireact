@@ -1,15 +1,22 @@
-FROM node:7.9.0-alpine
+FROM node:8.9.3-alpine
+# Create app directory
+RUN npm install -g babel-cli
+RUN npm install -g pm2
+RUN npm install -g babel-preset-env
 
-# Set a working directory
+RUN mkdir -p /usr/src/app 
 WORKDIR /usr/src/app
 
-COPY ./build/package.json .
-COPY ./build/yarn.lock .
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY  ./ .
 
-# Install Node.js dependencies
-RUN yarn install --production --no-progress
+RUN yarn install
 
-# Copy application files
-COPY ./build .
-
-CMD [ "node", "server.js" ]
+# If you are building your code for production
+# RUN npm install --only=production
+RUN yarn run build -- --release --docker
+# Bundle app source
+#, "--name 'webapp'", "-i max
+CMD ["pm2", "start", "build/server.js", "--no-daemon"]
