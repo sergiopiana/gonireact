@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Card from './CardContainer';
 import * as autosActions from '../ducks/autos';
 
-class Home extends React.Component {
+class AdminList extends React.Component {
   componentDidMount() {
     this.props.fetchautosLista();
   }
@@ -13,11 +12,8 @@ class Home extends React.Component {
     return (
       <div className="row">
         {autoslist.map(auto => (
-          <div className="col-sm-6 col-md-5 col-lg-4 col-xl-3" >
-            <Card
-              key={auto}
-              data={auto}
-            />
+          <div className="col-sm-12" >
+            <text key={auto}>{auto}</text>
           </div>
         ))}
       </div>
@@ -29,4 +25,4 @@ const mapStateToProps = state => ({
   autos: state.autos,
 });
 
-export default connect(mapStateToProps, autosActions)(Home);
+export default connect(mapStateToProps, autosActions)(AdminList);

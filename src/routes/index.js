@@ -1,6 +1,4 @@
-/**
- * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
- */
+  
 
 /* eslint-disable global-require */
 const routes = {
@@ -17,7 +15,11 @@ const routes = {
     {
       path: '/contacto',
       load: () => import(/* webpackChunkName: 'contacto' */ './contacto'),
-    },    
+    }, 
+    {
+      path: '/admin',
+      load: () => import(/* webpackChunkName: 'admin' */ './admin'),
+    },     
   ],
 
   async action({ next }) {

@@ -197,14 +197,17 @@ class CardContainer extends React.Component {
               <img className={`img-fluid rounded ${s.cardImg}`} src={this.state.image} />  
             </div>
             <div className={`card-body ${s.cardBody}`} >
-              <h3 className={s.cardText}><b>Estado:</b> {this.fnEstado(this.state.detalle.condition)}</h3>
+              <h3 className={s.cardText}><b>Año:</b>  {this.state.anio}</h3>
               <hr className={s.hr}/>
+{/*               <h3 className={s.cardText}><b>Estado:</b> {this.fnEstado(this.state.detalle.condition)}</h3>
+              <hr className={s.hr}/> */}
               <h3 className={s.cardText}><b>Marca:</b> {this.state.marca}</h3>
               <hr className={s.hr}/>
               <h3 className={s.cardText}><b>Modelo:</b> {this.state.modelo} {this.state.version}</h3>
               <hr className={s.hr}/>
               <h3 className={s.cardText}><b>Kms:</b>  {this.state.kms}</h3>
-             
+
+              
               <div className={`card-footer text-muted ${s.cardFooter}`}>
                 <div className="row">
                   <div className="col-sm">

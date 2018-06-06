@@ -17,12 +17,12 @@ class Home extends React.Component {
         <Slider /><br/>
       </div>
       <div className="row">
-
-        {autoslist.slice(0, 6).map(auto => (
-          <div className="col-sm-4 col-lg-3 col-xl-2" >
+      
+       {autoslist.slice(0, 6).map(auto => (
+          <div className="col-sm-6 col-md-5 col-lg-4 col-xl-3" >
             <Card
-              key={auto.id}
-              data={auto.id}
+              key={auto}
+              data={auto}
             />
           </div>
         ))}

@@ -80,8 +80,9 @@ max-height: 250px;
   cursor: pointer;
 }
 .modalStyle{
-  width: 750px;
-  margin: auto;
+  width: 90%;
+  max-width: 90%;
+    /* margin: auto; */
 }
 .listaDetalle{
 font-size: 10px;

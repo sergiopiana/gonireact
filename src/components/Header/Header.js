@@ -21,7 +21,7 @@ class Header extends React.Component {
                 <a className="nav-link btn btn-outline-secondary" href="/">Home<span className="sr-only">(current)</span></a>
               </li>
               <li className="nav-item" style={{padding:"5px"}}>
-                <a className="nav-link btn btn-outline-secondary" href="/catalogo">Catálogo</a>
+                <a className="nav-link btn btn-outline-secondary" href="/catalogo">Vehículos</a>
               </li>
               <li className="nav-item" style={{padding:"5px"}}>
                 <a className="nav-link btn btn-outline-secondary" href="/contacto">Contáctenos</a>

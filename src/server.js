@@ -34,12 +34,14 @@ import configureStore from './store/configureStore';
 import { setRuntimeVariable } from './actions/runtime';
 import { setLocale } from './actions/intl';
 import config from './config';
-import mercadoLibre from 'mercadolibre';
+import meli from 'mercadolibre';
+import fs from 'fs';
 
-const ml_id='8499389834046886';
-const ml_secret = 's7ZMGh6wY73YqFMN8pqei5wgyD0xTGlY';
+const client_id= 8499389834046886;
+const client_secret = 's7ZMGh6wY73YqFMN8pqei5wgyD0xTGlY';
 const ml_code = 'TG-5a7a40b3e4b0978c68f9b9a4-93187191' 
 let ml_token = '';
+const redirect_uri = 'http://localhost:3000/admin'
 
 
 const app = express();
@@ -57,6 +59,12 @@ global.navigator.userAgent = global.navigator.userAgent || 'all';
 //
 // Register Node.js middleware
 // -----------------------------------------------------------------------------
+
+//mercado libre APIs
+var meliObject = new meli.Meli(client_id, client_secret);
+
+
+//mercado libre APIs
 
 
 app.use(express.static(path.resolve(__dirname, 'public')));
@@ -87,85 +95,42 @@ if (__DEV__) {
 
 var cacheAutos;
 
+app.get('/api/mlprueba',(req, res)=>{
+//Get categories from mercado libre argentina
+meliObject.get('sites/MLA/categories', function (err, rsp) {
+  console.log(err, rsp);
+  if (err) {
+    return res.status(401).send(err);
+  }else{
+    return res.status(200).send(rsp);
+  }
+
+});
+  
+})
+
+app.get('/api/auth',(req, res)=>{
+ 
+  let melAuth = meliObject.getAuthURL(redirect_uri) 
+  console.log(meliObject.getAuthURL(redirect_uri));
+
+  //Get categories from mercado libre argentina
+  //meliObject.getAuthURL(redirect_uri)
+      return res.status(200).send(melAuth);
+   
+  })
+
 
 app.get('/api/autos', (req, res)=> {
-  const json = 
-    {
-      results:[
-      {
-        id: 'MLA710623067',
-      },
-      {
-        id: 'MLA710210200',
-      },
-      {
-        id: 'MLA709632553',
-      },
-      {
-        id: 'MLA708892733',
-      },
-      {
-        id: 'MLA708015761',
-      },
-      {
-        id: 'MLA707839142',
-      },
-      {
-        id: 'MLA707675176',
-      },
-      {
-        id: 'MLA707674547',
-      },
-      {
-        id: 'MLA707456365',
-      },
-      {
-        id: 'MLA706682375',
-      },
-      {
-        id: 'MLA704702334',
-      },
-      {
-        id: 'MLA704662431',
-      },
-      {
-        id: 'MLA704068189',
-      },
-      {
-        id: 'MLA704068184',
-      },
-      {
-        id: 'MLA704068181',
-      },                                                            
-      {
-        id: 'MLA704068173',
-      },
-      {
-        id: 'MLA704068171',
-      },
-      {
-        id: 'MLA704068168',
-      },
-      {
-        id: 'MLA704068163',
-      },  
-      {
-        id: 'MLA704068153',
-      },  
-      {
-        id: 'MLA704068148',
-      },  
-      {
-        id: 'MLA704068146',
-      }, 
-      {
-        id: 'MLA704068140',
-      },                                          
-      ],
-    };
-      
 
-  res.status(200).send(json);
+//  var meli = new Meli(8499389834046886, "s7ZMGh6wY73YqFMN8pqei5wgyD0xTGlY");
+
+
+
+  let rawdata = JSON.parse(fs.readFileSync('./public/lista.json')); 
+     
+
+  res.status(200).send(rawdata);
   
 });
 
@@ -180,9 +145,7 @@ app.get('/api/autosml', (req, res) => {
 
   setTimeout(() => { cacheAutos = undefined }, 86400000);
 
-  if(ml_token == ''){
 
-  }
 // const uri = 'https://api.mercadolibre.com/sites/MLA/search?nickname=dreamshop-ml&limit=10';
    const uri = 'https://api.mercadolibre.com/sites/MLA/search?q=autos&limit=10';
  //const uri = 'https://api.mercadolibre.com/users/93187191/items/search?&access_token=APP_USR-8499389834046886-021214-ecaa1e553e461741651a997de0856ff6__J_K__-93187191&limit=10';
