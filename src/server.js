@@ -118,7 +118,7 @@ app.get('/api/auth',(req, res)=>{
   //meliObject.getAuthURL(redirect_uri)
       return res.status(200).send(melAuth);
    
-  })
+  });
 
 
 app.get('/api/autos',(req, res)=> {
@@ -126,7 +126,7 @@ app.get('/api/autos',(req, res)=> {
   let rawdata = JSON.parse(fs.readFileSync('./public/lista.json')); 
      
 
-  res.status(200).send(rawdata);
+  return res.status(200).send(rawdata);
   
 });
 
