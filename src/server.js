@@ -123,10 +123,6 @@ app.get('/api/auth',(req, res)=>{
 
 app.get('/api/autos',(req, res)=> {
 
-//  var meli = new Meli(8499389834046886, "s7ZMGh6wY73YqFMN8pqei5wgyD0xTGlY");
-
-
-
   let rawdata = JSON.parse(fs.readFileSync('./public/lista.json')); 
      
 
