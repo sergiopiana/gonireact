@@ -111,21 +111,19 @@ meliObject.get('sites/MLA/categories', function (err, rsp) {
 
 app.get('/api/auth',(req, res)=>{
  
-  let melAuth = meliObject.getAuthURL(redirect_uri) 
-  console.log(meliObject.getAuthURL(redirect_uri));
+  //let melAuth = meliObject.getAuthURL(redirect_uri) 
+  //console.log(meliObject.getAuthURL(redirect_uri));
 
   //Get categories from mercado libre argentina
   //meliObject.getAuthURL(redirect_uri)
-      return res.status(200).send(melAuth);
+   //   return res.status(200).send(melAuth);
    
   });
 
 
-app.get('/api/autos',(req, res)=> {
+app.get('/api/autos', (req, res)=> {
 
   let rawdata = JSON.parse(fs.readFileSync('./public/lista.json')); 
-     
-
   return res.status(200).send(rawdata);
   
 });
