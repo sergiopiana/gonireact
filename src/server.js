@@ -121,10 +121,10 @@ app.get('/api/auth',(req, res)=>{
   });
 
 
-app.get('/api/autos', (req, res)=> {
+app.get('/api/autos', (req, res)=>{
 
-  let rawdata = JSON.parse(fs.readFileSync('./public/lista.json')); 
-  return res.status(200).send(rawdata);
+  //let rawdata = JSON.parse(fs.readFileSync('./public/lista.json')); 
+  //return res.status(200).send(rawdata);
   
 });
 
