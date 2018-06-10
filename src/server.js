@@ -122,10 +122,10 @@ app.get('/api/auth',(req, res)=>{
 
 
 app.get('/api/autos', (req, res)=>{
+  let rawdata = JSON.parse(fs.readFileSync('./public/lista.json'))
 
-  //let rawdata = JSON.parse(fs.readFileSync('./public/lista.json')); 
-  //return res.status(200).send(rawdata);
-  
+  return res.status(200).send(rawdata);
+
 });
 
 app.get('/api/autosml', (req, res) => {

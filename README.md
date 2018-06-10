@@ -1,4 +1,4 @@
-## Swiss Medical Group Web Application
+## Goni Autos Web Application
 
 ## Environment Requirements
 
@@ -15,6 +15,5 @@
 
 
 # Developers
-* Juan Carlos Cancela <cancela.juancarlos@gmail.com>
-* Add it!
+
 # gonireact
