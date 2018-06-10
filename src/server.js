@@ -109,6 +109,13 @@ meliObject.get('sites/MLA/categories', function (err, rsp) {
   
 })
 
+app.get('/api/autos', (req, res)=>{
+  let rawdata = JSON.parse(fs.readFileSync('./public/lista.json'))
+
+  return res.status(200).send(rawdata);
+
+});
+
 app.get('/api/auth',(req, res)=>{
  
   //let melAuth = meliObject.getAuthURL(redirect_uri) 
@@ -121,12 +128,7 @@ app.get('/api/auth',(req, res)=>{
   });
 
 
-app.get('/api/autos', (req, res)=>{
-  let rawdata = JSON.parse(fs.readFileSync('./public/lista.json'))
 
-  return res.status(200).send(rawdata);
-
-});
 
 app.get('/api/autosml', (req, res) => {
 
@@ -138,7 +140,6 @@ app.get('/api/autosml', (req, res) => {
     
 
   setTimeout(() => { cacheAutos = undefined }, 86400000);
-
 
 // const uri = 'https://api.mercadolibre.com/sites/MLA/search?nickname=dreamshop-ml&limit=10';
    const uri = 'https://api.mercadolibre.com/sites/MLA/search?q=autos&limit=10';
