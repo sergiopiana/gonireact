@@ -12,7 +12,8 @@ class Admin extends React.Component {
     this.cargar = this.cargar.bind(this);
   }
   componentDidMount(){
-
+    //if(access_token)
+    console.log(this.props.location.search)
   }
   cargar(){
     const client_id= 8499389834046886;
@@ -22,8 +23,9 @@ class Admin extends React.Component {
     const redirect_uri = 'http://localhost:3000/admin'
     //const meliObject = new meli.Meli(client_id, client_secret);
     //meliObject.getAuthURL(redirect_uri) 
+    //+'&redirect_uri='+redirect_uri
     window.location = 'https://auth.mercadolibre.com.ar/authorization?response_type=token&client_id='+client_id
- 
+    
   }
 
   render() {

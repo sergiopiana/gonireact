@@ -95,19 +95,32 @@ if (__DEV__) {
 
 var cacheAutos;
 
-app.get('/api/mlprueba',(req, res)=>{
-//Get categories from mercado libre argentina
-meliObject.get('sites/MLA/categories', function (err, rsp) {
-  console.log(err, rsp);
-  if (err) {
-    return res.status(401).send(err);
-  }else{
-    return res.status(200).send(rsp);
-  }
+// app.get('/api/mlprueba',(req, res)=>{
+// //Get categories from mercado libre argentina
+// meliObject.get('sites/MLA/categories', function (err, rsp) {
+//   console.log(err, rsp);
+//   if (err) {
+//     return res.status(401).send(err);
+//   }else{
+//     return res.status(200).send(rsp);
+//   }
+
+// });
+  
+// })
+
+app.get('/api/autosActualizar', (req, res)=>{
+
+  let data = JSON.stringify(mlautos);  
+  fs.writeFileSync('./public/lista.json', data);
+
+  let rawdata = JSON.parse(fs.readFileSync('./public/lista.json'))
+
+  return res.status(200).send(rawdata);
 
 });
-  
-})
+
+
 
 app.get('/api/autos', (req, res)=>{
   let rawdata = JSON.parse(fs.readFileSync('./public/lista.json'))
@@ -117,14 +130,8 @@ app.get('/api/autos', (req, res)=>{
 });
 
 app.get('/api/auth',(req, res)=>{
- 
-  //let melAuth = meliObject.getAuthURL(redirect_uri) 
-  //console.log(meliObject.getAuthURL(redirect_uri));
+  console.log(req.query.access_token)
 
-  //Get categories from mercado libre argentina
-  //meliObject.getAuthURL(redirect_uri)
-   //   return res.status(200).send(melAuth);
-   
   });
 
 
