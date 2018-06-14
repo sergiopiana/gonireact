@@ -16,6 +16,8 @@ class CardContainer extends React.Component {
     this.state = {anio:[] }
     this.state = {imageDetail:''}
     this.changeImage = this.changeImage.bind(this);
+    this.nextImage = this.nextImage.bind(this);
+    this.prevImage = this.prevImage.bind(this);
   }
 
   fnEstado(estado){
@@ -39,6 +41,20 @@ class CardContainer extends React.Component {
     //return()
   }
 
+nextImage(image){
+ let index = _.findIndex(this.state.detalle.pictures, function(o) { return o.url == image});
+ if (index + 1 < _.size(this.state.detalle.pictures)){ 
+  //console.log(_.size(this.state.detalle.pictures)+' - ' + index);
+  this.setState({imageDetail:this.state.detalle.pictures[index+1].url})
+}
+}
+prevImage(image){
+  let index = _.findIndex(this.state.detalle.pictures, function(o) { return o.url == image});
+  if (index  > 0){ 
+  // console.log(_.size(this.state.detalle.pictures)+' - ' + index);
+   this.setState({imageDetail:this.state.detalle.pictures[index-1].url})
+ }
+ }
   componentDidMount(){
     fetch('/api/detalleml?item='+this.props.data)
     .then(response => response.json())
@@ -102,7 +118,7 @@ class CardContainer extends React.Component {
     const seguridad = autoDetails.filter(confort => confort.attribute_group_id == "SECURITY" && confort.value_name != "No")    
     const equipamiento = autoDetails.filter(confort => confort.attribute_group_id == "EQUIPAMIENTO" && confort.value_name != "No")
     const sonido = autoDetails.filter(confort => confort.attribute_group_id == "SONIDO" && confort.value_name != "No")
-    console.log(confort);
+
     return(
       <div className={s.root}>
         <div className={s.container}>
@@ -117,9 +133,13 @@ class CardContainer extends React.Component {
                   </button>
                 </div>
                 <div className="modal-body">
-                  <div className="row">
-                    <div className="col-sm-12 col-md-6">
+                  <div className="row" align='center'>
+                  
+                    <div className="col-sm-10 col-md-6">
+                    
+                      <div onClick={() => this.prevImage(this.state.imageDetail)} style={{'position':'absolute', 'top':'50%', 'left':'7%' , 'fontSize':'3em', 'cursor':'pointer'}}><i class="fas fa-angle-left"></i></div>
                       <img id={`img${this.state.detalle.id}`} className={`img-fluid`} src={this.state.imageDetail} /> 
+                      <div onClick={() => this.nextImage(this.state.imageDetail)} style={{'position':'absolute', 'top':'50%', 'left':'90%', 'fontSize':'3em', 'cursor':'pointer'}}><i class="fas fa-angle-right"></i></div>
                     </div>
                     <div className="col-sm-12 col-md-6">
                     <div className="panel list-group">
