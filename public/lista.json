@@ -2,22 +2,29 @@
   "seller_id": "93187191",
   "query": null,
   "paging": {
-    "total": 30,
+    "total": 31,
     "offset": 0,
     "limit": 50
   },
   "results": [
-    "MLA712699696",
-    "MLA719995160",
-    "MLA722256568",
-    "MLA726024753",
-    "MLA716871081",
-    "MLA713464272",
-    "MLA729486183",
+    "MLA731874952",
+    "MLA733009367",
+    "MLA732495656",
+    "MLA732495652",
+    "MLA732495648",
+    "MLA732495635",
+    "MLA731829540",
+    "MLA731780497",
+    "MLA731780491",
+    "MLA731780007",
+    "MLA731780000",
+    "MLA731566710",
+    "MLA731555270",
+    "MLA730579451",
+    "MLA730579115",
+    "MLA729747263",
     "MLA729146306",
     "MLA728527793",
-    "MLA728527791",
-    "MLA728289020",
     "MLA728043108",
     "MLA728043065",
     "MLA727957709",
@@ -25,17 +32,12 @@
     "MLA727025392",
     "MLA727025007",
     "MLA726626924",
-    "MLA726621459",
-    "MLA723539276",
     "MLA723157891",
-    "MLA722971824",
     "MLA722255438",
-    "MLA721954927",
-    "MLA721935829",
-    "MLA718625076",
     "MLA718167337",
     "MLA704068148",
-    "MLA704068146"
+    "MLA704068146",
+    "MLA729332122"
   ],
   "orders": [
     {
@@ -140,7 +142,7 @@
         {
           "id": "active",
           "name": "Active items",
-          "results": 24
+          "results": 30
         },
         {
           "id": "paused",
@@ -150,7 +152,7 @@
         {
           "id": "closed",
           "name": "Closed Items",
-          "results": 6
+          "results": 1
         }
       ]
     },
@@ -207,7 +209,7 @@
         {
           "id": "classified",
           "name": "Classified",
-          "results": 29
+          "results": 30
         },
         {
           "id": "auction",
@@ -238,12 +240,12 @@
         {
           "id": "gold",
           "name": "Gold",
-          "results": 23
+          "results": 20
         },
         {
           "id": "silver",
           "name": "Silver",
-          "results": 6
+          "results": 10
         },
         {
           "id": "bronze",
@@ -275,7 +277,7 @@
       "values": [
         {
           "id": "not_specified",
-          "results": 30
+          "results": 31
         }
       ]
     },
@@ -332,12 +334,12 @@
         {
           "id": "without_bids",
           "name": "Items whithout bids",
-          "results": 30
+          "results": 31
         },
         {
           "id": "accepts_mercadopago",
           "name": "Items with MercadoPago",
-          "results": 30
+          "results": 31
         },
         {
           "id": "ending_soon",
@@ -352,7 +354,7 @@
         {
           "id": "without_mercadolibre_envios",
           "name": "Items without MercadoLibre Envíos",
-          "results": 30
+          "results": 31
         },
         {
           "id": "with_low_quality_image",
@@ -367,7 +369,7 @@
         {
           "id": "without_free_shipping",
           "name": "Items with free shipping",
-          "results": 30
+          "results": 31
         },
         {
           "id": "with_automatic_relist",
@@ -407,6 +409,11 @@
         {
           "id": "without_stock",
           "name": "Paused items that are out of stock",
+          "results": 0
+        },
+        {
+          "id": "incomplete_technical_specs",
+          "name": "Items with incomplete technical specs",
           "results": 0
         }
       ]
