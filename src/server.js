@@ -36,6 +36,7 @@ import { setLocale } from './actions/intl';
 import config from './config';
 import meli from 'mercadolibre';
 import fs from 'fs';
+import _ from 'lodash';
 
 const client_id= 8499389834046886;
 const client_secret = 's7ZMGh6wY73YqFMN8pqei5wgyD0xTGlY';
@@ -93,34 +94,14 @@ if (__DEV__) {
   app.enable('trust proxy');
 }
 
-var cacheAutos;
-
-// app.get('/api/mlprueba',(req, res)=>{
-// //Get categories from mercado libre argentina
-// meliObject.get('sites/MLA/categories', function (err, rsp) {
-//   console.log(err, rsp);
-//   if (err) {
-//     return res.status(401).send(err);
-//   }else{
-//     return res.status(200).send(rsp);
-//   }
-
-// });
-  
-// })
-
-app.get('/api/autosActualizar', (req, res)=>{
-
-  let data = JSON.stringify(mlautos);  
-  fs.writeFileSync('./public/lista.json', data);
-
-  let rawdata = JSON.parse(fs.readFileSync('./public/lista.json'))
-
-  return res.status(200).send(rawdata);
+app.get('/api/autoDelete', (req, res)=>{
+  let rawdata = JSON.parse(fs.readFileSync('./public/lista.json'));
+  let result = _.remove(rawdata, req.query.id);
+  console.log(result);
+  fs.writeFileSync('./public/lista.json', result);
+  return res.status(200).send("ok");
 
 });
-
-
 
 app.get('/api/autos', (req, res)=>{
   let rawdata = JSON.parse(fs.readFileSync('./public/lista.json'))
@@ -137,55 +118,45 @@ app.get('/api/auth',(req, res)=>{
 
 
 
-app.get('/api/autosml', (req, res) => {
 
-  if(cacheAutos){
-    console.log("cacheauto");
-    res.setHeader('content-type', 'application/json');
-    return res.status(200).send(cacheAutos);
-  } 
-    
+  app.get('/api/autosml', (req, res) => {
+  let token = req.query.token;
+  console.log(token);
+   const uri = `https://api.mercadolibre.com/users/93187191/items/search?&access_token=${token}`;
+    const options = {
+      uri,
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    };
+  
+    request(options, (err, rsp, body) => {
+      if (err) {
+        return res.status(401).send(err);
+      }
 
-  setTimeout(() => { cacheAutos = undefined }, 86400000);
-
-// const uri = 'https://api.mercadolibre.com/sites/MLA/search?nickname=dreamshop-ml&limit=10';
-   const uri = 'https://api.mercadolibre.com/sites/MLA/search?q=autos&limit=10';
- //const uri = 'https://api.mercadolibre.com/users/93187191/items/search?&access_token=APP_USR-8499389834046886-021214-ecaa1e553e461741651a997de0856ff6__J_K__-93187191&limit=10';
-  const options = {
-    uri,
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-  };
-
-  request(options, (err, rsp, body) => {
-    if (err) {
-      return res.status(401).send(err);
-    }
-    if (!err && parseInt(rsp.statusCode, 10) === 200) {
-      res.setHeader('content-type', 'application/json');
-      cacheAutos = body;
-      return res.status(200).send(body);
-    }
+      if (!err && parseInt(rsp.statusCode, 10) === 403) {
+        res.setHeader('content-type', 'application/json');
+  
+        console.log(body);
+        return res.status(403).send(body);
+      }
+      if (!err && parseInt(rsp.statusCode, 10) === 200) {
+        fs.writeFileSync('./public/lista.json', body);
+        res.setHeader('content-type', 'application/json');
+  
+        console.log(body);
+        return res.status(200).send(body);
+      }
+    });
   });
-});
+  
 
-var cache;
 
 app.get('/api/detalleml', (req, res) => {
-  console.log("METHOD")
 
-  if(cache){
-    console.log("cache");
-    console.log(JSON.stringify(cache));
-    res.setHeader('content-type', 'application/json');
-    return res.status(200).send(cache);
-  } 
-    
-
-  setTimeout(() => { cache = undefined }, 86400000);
 
     let item = req.param('item');
     const uri = `https://api.mercadolibre.com/items/${item}`;

@@ -1,6 +1,4 @@
-  
 
-/* eslint-disable global-require */
 const routes = {
   path: '/',
   children: [

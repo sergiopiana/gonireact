@@ -4,6 +4,7 @@ import _ from 'lodash';
 import s from './Admin.css';
 import Listado from '../../containers/AdminList';
 import meli from 'mercadolibre';
+import queryString from 'query-string';
 
 class Admin extends React.Component {
   constructor(props){
@@ -12,8 +13,16 @@ class Admin extends React.Component {
     this.cargar = this.cargar.bind(this);
   }
   componentDidMount(){
-    //if(access_token)
-    console.log(this.props.location.search)
+    const parsedHash = queryString.parse(location.hash);
+    //console.log(parsedHash);
+    const token = parsedHash.access_token;
+    if(token){
+      fetch('/api/autosml?token='+token)
+      .then(response => response.json())
+      .then((json) => {
+        console.log(json)
+      })
+    }
   }
   cargar(){
     const client_id= 8499389834046886;
@@ -33,15 +42,9 @@ class Admin extends React.Component {
     return (
       <div className={s.root}>
         <div className="container-fluid">
+          <button onClick={() => this.cargar()} className="btn btn-secondary">Importar</button>
+            <Listado/>
 
-          <div className="row">
-            <div className="col-sm-6">
-              <div className="col-sm-6"><button onClick={() => this.cargar()} className="btn btn-secondary">Importar</button></div>
-              <div className="col-sm-6"></div>
-            </div>
-              <div className="col-sm-6"><Listado/></div> 
-              <div className="col-sm-6"></div> 
-          </div>
         </div>
       </div>
     );
