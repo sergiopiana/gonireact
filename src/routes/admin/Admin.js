@@ -29,7 +29,7 @@ class Admin extends React.Component {
     const client_secret = 's7ZMGh6wY73YqFMN8pqei5wgyD0xTGlY';
     const ml_code = 'TG-5a7a40b3e4b0978c68f9b9a4-93187191' 
     let ml_token = '';
-    const redirect_uri = 'http://localhost:3000/admin'
+    const redirect_uri = 'https://www.goniauto.com.ar/admin/'
     //const meliObject = new meli.Meli(client_id, client_secret);
     //meliObject.getAuthURL(redirect_uri) 
     //+'&redirect_uri='+redirect_uri
