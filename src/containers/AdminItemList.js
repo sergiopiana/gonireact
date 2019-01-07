@@ -95,7 +95,7 @@ class AdminItemList extends React.Component {
       <div>
         <div>
 
-          <div className="modal fade" id={this.state.detalle.id} tabindex="-1" role="dialog">
+          <div className="modal fade" id={this.state.detalle.id} tabIndex="-1" role="dialog">
             <div className={`modal-dialog modal-lg ${s.modalStyle}`} role="document">
               <div className="modal-content">
                 <div className="modal-header">                                                                                                                     
@@ -107,12 +107,7 @@ class AdminItemList extends React.Component {
                 <div className="modal-body">
                   <div className="row" align='center'>
                   
-                    <div className="col-sm-10 col-md-6">
-                    
-                      <div onClick={() => this.prevImage(this.state.imageDetail)} style={{'position':'absolute', 'top':'50%', 'left':'7%' , 'fontSize':'3em', 'cursor':'pointer'}}><i class="fas fa-angle-left"></i></div>
-                      <img id={`img${this.state.detalle.id}`} className={`img-fluid`} src={this.state.imageDetail} /> 
-                      <div onClick={() => this.nextImage(this.state.imageDetail)} style={{'position':'absolute', 'top':'50%', 'left':'90%', 'fontSize':'3em', 'cursor':'pointer'}}><i class="fas fa-angle-right"></i></div>
-                    </div>
+                    {/*   */}
                     <div className="col-sm-12 col-md-6">
                     <div className="panel list-group">
                         <h3 className={`list-group-item ${s.cardTextDetalle}`}><div className="row"><div className="col-sm-6"> <b>Estado:</b> {this.fnEstado(this.state.detalle.condition)}</div><div className="col-sm-6"><b>Kms:</b>  {this.state.kms}</div></div></h3>

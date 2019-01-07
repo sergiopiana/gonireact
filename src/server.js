@@ -96,9 +96,9 @@ if (__DEV__) {
 
 app.get('/api/autoDelete', (req, res)=>{
   let rawdata = JSON.parse(fs.readFileSync('./public/lista.json'));
-  let result = _.remove(rawdata, req.query.id);
-  console.log(result);
-  fs.writeFileSync('./public/lista.json', result);
+  rawdata.results.splice(req.query.id,1);
+  console.log(rawdata.results);
+  fs.writeFileSync('./public/lista.json', JSON.stringify(rawdata));
   return res.status(200).send("ok");
 
 });

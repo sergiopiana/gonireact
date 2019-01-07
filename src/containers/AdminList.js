@@ -24,10 +24,10 @@ class AdminList extends React.Component {
     //console.log(autoslist);
     return (
       <div className="container-fluid">
-        {autoslist.map(auto => (
+        {autoslist.map(auto, index => (
       <div style={{"padding":"10px"}} className="row">
           <div className="col-10">
-          <AdminItemList key={auto} data={auto} /> 
+          <AdminItemList key={index} data={auto} /> 
           </div>
           <div className="col-2">
             {/* <button type="button" onclick={this.eliminarItem(auto)} className="btn btn-danger">Eliminar</button> */}

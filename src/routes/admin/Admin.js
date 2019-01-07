@@ -2,15 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import s from './Admin.css';
-import Listado from '../../containers/AdminList';
+import AdminItemList from '../../containers/AdminItemList';
 import meli from 'mercadolibre';
 import queryString from 'query-string';
 
 class Admin extends React.Component {
   constructor(props){
     super(props)
-
+    this.state = {autosList:[] }  
     this.cargar = this.cargar.bind(this);
+    this.eliminarItem = this.eliminarItem.bind(this);
+    this.cargarAutos = this.cargarAutos.bind(this);
   }
   componentDidMount(){
     const parsedHash = queryString.parse(location.hash);
@@ -20,10 +22,23 @@ class Admin extends React.Component {
       fetch('/api/autosml?token='+token)
       .then(response => response.json())
       .then((json) => {
+        this.setState({autosList:json.results })
         console.log(json)
       })
+    }else{
+      this.cargarAutos()
     }
+    
   }
+  cargarAutos(){
+    fetch('/api/autos', {cache: "no-store"})
+      .then(response => response.json())
+      .then((json) => {
+        console.log(json)
+        this.setState({autosList:json.results })
+      })      
+  }
+
   cargar(){
     const client_id= 8499389834046886;
     const client_secret = 's7ZMGh6wY73YqFMN8pqei5wgyD0xTGlY';
@@ -36,14 +51,31 @@ class Admin extends React.Component {
     window.location = 'https://auth.mercadolibre.com.ar/authorization?response_type=token&client_id='+client_id
     
   }
+  eliminarItem = (id) =>{
+    fetch('/api/autoDelete?id='+id)
+    .then(this.cargarAutos())
+    .then(this.setState({autosList:[] }))
+  }
 
   render() {
+    const autoslist = this.state.autosList;
 
     return (
       <div className={s.root}>
         <div className="container-fluid">
           <button onClick={() => this.cargar()} className="btn btn-secondary">Importar</button>
-            <Listado/>
+          <div className="container-fluid">
+            {this.state.autosList.map((auto, index) =>
+             <div style={{"padding":"10px","border-bottom": "1pt solid black"}} className="row">
+              <div className="col-10">
+                <AdminItemList key={index} data={auto} /> 
+              </div>
+              <div className="col-2">
+                <button type="button" onClick={()=>this.eliminarItem(index)} className="btn btn-danger">Eliminar</button>
+              </div>
+        </div>  
+        )}
+      </div>
 
         </div>
       </div>
